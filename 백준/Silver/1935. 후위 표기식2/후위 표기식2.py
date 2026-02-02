@@ -1,22 +1,20 @@
-n=int(input())
-cal=list(input())
-ops=['*','+','-','/']
-stack=[]
-ab=[]*n
+import sys
+
+n=int(sys.stdin.readline())
+cal=list[str](map(str,sys.stdin.readline().rstrip()))
+
+val=[]
 for i in range(n):
-    ab.append(input())
+    val.append(sys.stdin.readline().rstrip())
 
-for i in cal:
-    if i in ops:
-        a=stack.pop()
-        b=stack.pop()
-        r="("+b+i+a+")"
-        stack.append(r)
-
+stack=[]
+for e in cal:
+    if e.isalpha():
+        stack.append(val[ord(e)-ord("A")])
     else:
-        num=ord(i)-ord('A')
-        stack.append(ab[num])
-result=eval(stack[0])
-print('%.2f'%result)
+        b=stack.pop()
+        a=stack.pop()
+        res=eval(a+e+b)
+        stack.append(str(res))
 
-
+print(f"{res:.2f}")
